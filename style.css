@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+.game {
+    position: relative;
+    width: 600px;
+    height: 200px;
+    margin: 20px auto;
+    background-color: #fff;
+    border: 2px solid #333;
+    overflow: hidden;
+}
+
+.robo {
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+    width: 50px;
+    height: 50px;
+    background-color: #ff0000; /* robô vermelho */
+    border-radius: 10px;
+}
+
+.obstaculo {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    height: 50px;
+    background-color: #333;
+}
