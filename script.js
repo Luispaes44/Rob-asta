@@ -1,52 +1,41 @@
-const robo = document.getElementById("robo");
-const obstaculo = document.getElementById("obstaculo");
-const scoreEl = document.getElementById("score");
-
-let isJumping = false;
-let score = 0;
-
-function jump() {
-    if (isJumping) return;
-    isJumping = true;
-    let jumpHeight = 0;
-    const upInterval = setInterval(() => {
-        if (jumpHeight >= 100) {
-            clearInterval(upInterval);
-            const downInterval = setInterval(() => {
-                if (jumpHeight <= 0) {
-                    clearInterval(downInterval);
-                    isJumping = false;
-                }
-                jumpHeight -= 5;
-                robo.style.bottom = jumpHeight + "px";
-            }, 20);
-        }
-        jumpHeight += 5;
-        robo.style.bottom = jumpHeight + "px";
-    }, 20);
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
 }
 
-document.addEventListener("keydown", (e) => {
-    if (e.code === "Space") jump();
-});
+h1 {
+    color: #333;
+}
 
-// Movimento do obstáculo e colisão
-let obstaculoPosition = 600;
-const gameLoop = setInterval(() => {
-    obstaculoPosition -= 5;
-    if (obstaculoPosition < -20) {
-        obstaculoPosition = 600;
-        score++;
-        scoreEl.textContent = score;
-    }
-    obstaculo.style.right = obstaculoPosition + "px";
+.game {
+    position: relative;
+    width: 600px;
+    height: 200px;
+    margin: 20px auto;
+    background-color: #fff;
+    border: 2px solid #333;
+    overflow: hidden;
+}
 
-    // Colisão
-    const roboBottom = parseInt(robo.style.bottom.replace("px", ""));
-    if (obstaculoPosition <= 70 && obstaculoPosition >= 50 && roboBottom < 50) {
-        alert("Fim de jogo! Sua pontuação: " + score);
-        obstaculoPosition = 600;
-        score = 0;
-        scoreEl.textContent = score;
-    }
-}, 20);
+.robo {
+    position: absolute;
+    bottom: 0px; /* começa no chão */
+    left: 50px;
+    width: 50px;
+    height: 50px;
+    background-color: #ff0000; /* robô vermelho */
+    border-radius: 10px;
+}
+
+.obstaculo {
+    position: absolute;
+    bottom: 0px; /* começa no chão */
+    right: 0px;
+    width: 20px;
+    height: 50px;
+    background-color: #333;
+}
+    
